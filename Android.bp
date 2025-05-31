@@ -16,6 +16,8 @@ prebuilt_kernel_modules {
     kernel_version: "6.12",
     no_full_install: true,
     visibility: ["//visibility:private"],
+    // GKI modules are signed and stripping them would remove the signatures
+    strip_debug_symbols: false,
 }
 
 filegroup {
