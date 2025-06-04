@@ -23,7 +23,9 @@ __arm_smccc_smc
 __auxiliary_device_add
 __auxiliary_driver_register
 __balance_callbacks
+__bforget
 __bh_read
+__bh_read_batch
 __bio_add_page
 __bitmap_and
 __bitmap_andnot
@@ -46,6 +48,7 @@ __blk_rq_map_sg
 __blkdev_issue_discard
 __blockdev_direct_IO
 __bread_gfp
+__breadahead
 __break_lease
 __brelse
 __check_object_size
@@ -159,6 +162,7 @@ __filemap_set_wb_err
 __flush_workqueue
 __folio_alloc_noprof
 __folio_batch_release
+__folio_cancel_dirty
 __folio_lock
 __folio_lock_killable
 __folio_put
@@ -203,6 +207,7 @@ __init_rwsem
 __init_swait_queue_head
 __init_waitqueue_head
 __inode_attach_wb
+__insert_inode_hash
 __ioread32_copy
 __iowrite32_copy_full
 __ip_dev_find
@@ -343,6 +348,7 @@ __regmap_init
 __regmap_init_i2c
 __regmap_init_mmio_clk
 __release_region
+__remove_inode_hash
 __request_module
 __request_percpu_irq
 __request_region
@@ -404,6 +410,7 @@ __sw_hweight32
 __sw_hweight64
 __sw_hweight8
 __swiotlb_find_pool
+__sync_dirty_buffer
 __sysfs_match_string
 __task_pid_nr_ns
 __task_rq_lock
@@ -535,6 +542,8 @@ __traceiter_android_rvh_set_balance_anon_file_reclaim
 __traceiter_android_rvh_set_cpus_allowed_by_task
 __traceiter_android_rvh_set_cpus_allowed_comm
 __traceiter_android_rvh_set_cpus_allowed_ptr
+__traceiter_android_rvh_set_gfp_zone_flags
+__traceiter_android_rvh_set_readahead_gfp_mask
 __traceiter_android_rvh_set_task_comm
 __traceiter_android_rvh_set_task_cpu
 __traceiter_android_rvh_set_user_nice
@@ -677,6 +686,7 @@ __traceiter_android_vh_dma_heap_buffer_alloc_end
 __traceiter_android_vh_dma_heap_buffer_alloc_start
 __traceiter_android_vh_do_async_mmap_readahead
 __traceiter_android_vh_do_futex
+__traceiter_android_vh_do_group_exit
 __traceiter_android_vh_do_new_mount_fc
 __traceiter_android_vh_do_read_fault
 __traceiter_android_vh_do_send_sig_info
@@ -695,6 +705,7 @@ __traceiter_android_vh_f2fs_create
 __traceiter_android_vh_f2fs_file_open
 __traceiter_android_vh_f2fs_improve_priority
 __traceiter_android_vh_f2fs_printk
+__traceiter_android_vh_f2fs_ra_op_flags
 __traceiter_android_vh_f2fs_restore_priority
 __traceiter_android_vh_filemap_fault_end
 __traceiter_android_vh_filemap_fault_start
@@ -792,6 +803,8 @@ __traceiter_android_vh_mutex_unlock_slowpath_before_wakeq
 __traceiter_android_vh_mutex_wait_finish
 __traceiter_android_vh_mutex_wait_start
 __traceiter_android_vh_ogki_check_vip_status
+__traceiter_android_vh_oom_swapmem_gather_finish
+__traceiter_android_vh_oom_swapmem_gather_init
 __traceiter_android_vh_page_add_new_anon_rmap
 __traceiter_android_vh_page_cache_readahead_end
 __traceiter_android_vh_page_cache_readahead_start
@@ -894,6 +907,9 @@ __traceiter_android_vh_slab_free
 __traceiter_android_vh_smaps_pte_entry
 __traceiter_android_vh_sock_create
 __traceiter_android_vh_split_large_folio_bypass
+__traceiter_android_vh_swapmem_gather_add_bypass
+__traceiter_android_vh_swapmem_gather_finish
+__traceiter_android_vh_swapmem_gather_init
 __traceiter_android_vh_sync_txn_recvd
 __traceiter_android_vh_syscall_prctl_finished
 __traceiter_android_vh_sysrq_crash
@@ -1164,6 +1180,8 @@ __tracepoint_android_rvh_set_balance_anon_file_reclaim
 __tracepoint_android_rvh_set_cpus_allowed_by_task
 __tracepoint_android_rvh_set_cpus_allowed_comm
 __tracepoint_android_rvh_set_cpus_allowed_ptr
+__tracepoint_android_rvh_set_gfp_zone_flags
+__tracepoint_android_rvh_set_readahead_gfp_mask
 __tracepoint_android_rvh_set_task_comm
 __tracepoint_android_rvh_set_task_cpu
 __tracepoint_android_rvh_set_user_nice
@@ -1306,6 +1324,7 @@ __tracepoint_android_vh_dma_heap_buffer_alloc_end
 __tracepoint_android_vh_dma_heap_buffer_alloc_start
 __tracepoint_android_vh_do_async_mmap_readahead
 __tracepoint_android_vh_do_futex
+__tracepoint_android_vh_do_group_exit
 __tracepoint_android_vh_do_new_mount_fc
 __tracepoint_android_vh_do_read_fault
 __tracepoint_android_vh_do_send_sig_info
@@ -1324,6 +1343,7 @@ __tracepoint_android_vh_f2fs_create
 __tracepoint_android_vh_f2fs_file_open
 __tracepoint_android_vh_f2fs_improve_priority
 __tracepoint_android_vh_f2fs_printk
+__tracepoint_android_vh_f2fs_ra_op_flags
 __tracepoint_android_vh_f2fs_restore_priority
 __tracepoint_android_vh_filemap_fault_end
 __tracepoint_android_vh_filemap_fault_start
@@ -1421,6 +1441,8 @@ __tracepoint_android_vh_mutex_unlock_slowpath_before_wakeq
 __tracepoint_android_vh_mutex_wait_finish
 __tracepoint_android_vh_mutex_wait_start
 __tracepoint_android_vh_ogki_check_vip_status
+__tracepoint_android_vh_oom_swapmem_gather_finish
+__tracepoint_android_vh_oom_swapmem_gather_init
 __tracepoint_android_vh_page_add_new_anon_rmap
 __tracepoint_android_vh_page_cache_readahead_end
 __tracepoint_android_vh_page_cache_readahead_start
@@ -1523,6 +1545,9 @@ __tracepoint_android_vh_slab_free
 __tracepoint_android_vh_smaps_pte_entry
 __tracepoint_android_vh_sock_create
 __tracepoint_android_vh_split_large_folio_bypass
+__tracepoint_android_vh_swapmem_gather_add_bypass
+__tracepoint_android_vh_swapmem_gather_finish
+__tracepoint_android_vh_swapmem_gather_init
 __tracepoint_android_vh_sync_txn_recvd
 __tracepoint_android_vh_syscall_prctl_finished
 __tracepoint_android_vh_sysrq_crash
@@ -1725,6 +1750,7 @@ __xa_insert
 __xa_store
 __xdp_rxq_info_reg
 __xfrm_state_destroy
+_atomic_dec_and_lock
 _copy_from_iter
 _copy_to_iter
 _ctype
@@ -1904,6 +1930,7 @@ bin2hex
 binder_alloc_copy_from_buffer
 bio_add_page
 bio_alloc_bioset
+bio_alloc_clone
 bio_associate_blkg
 bio_chain
 bio_clone_blkg_association
@@ -1917,6 +1944,7 @@ bioset_exit
 bioset_init
 bit_wait
 bit_wait_timeout
+bit_waitqueue
 bitmap_alloc
 bitmap_find_next_zero_area_off
 bitmap_free
@@ -1995,6 +2023,7 @@ blkdev_issue_flush
 blkdev_issue_zeroout
 block_dirty_folio
 block_invalidate_folio
+block_is_partially_uptodate
 block_truncate_page
 block_write_begin
 block_write_end
@@ -2115,6 +2144,7 @@ cancel_delayed_work_sync
 cancel_work
 cancel_work_sync
 capable
+capable_wrt_inode_uidgid
 cdc_parse_cdc_header
 cdev_add
 cdev_alloc
@@ -2171,6 +2201,7 @@ cleanup_srcu_struct
 clear_inode
 clear_nlink
 clear_page
+clear_page_dirty_for_io
 clk_bulk_disable
 clk_bulk_enable
 clk_bulk_get
@@ -2305,6 +2336,7 @@ console_suspend_enabled
 console_trylock
 console_unlock
 consume_skb
+cont_write_begin
 contig_page_data
 contpte_ptep_test_and_clear_young
 copy_from_iter_toio
@@ -2513,6 +2545,7 @@ current_time
 current_umask
 current_work
 d_add
+d_add_ci
 d_alloc_parallel
 d_drop
 d_find_alias
@@ -2973,6 +3006,7 @@ devres_release
 devres_release_group
 devres_remove_group
 dget_parent
+dirty_writeback_interval
 disable_delayed_work
 disable_delayed_work_sync
 disable_hardirq
@@ -2981,6 +3015,7 @@ disable_irq_nosync
 disable_percpu_irq
 disable_work_sync
 discard_new_inode
+disk_live
 divider_determine_rate
 divider_get_val
 divider_recalc_rate
@@ -3730,6 +3765,7 @@ fasync_helper
 fat_time_fat2unix
 fat_time_unix2fat
 fault_in_iov_iter_readable
+fault_in_safe_writeable
 fc_mount
 fd_install
 fdget
@@ -3737,6 +3773,7 @@ fget
 fiemap_fill_next_extent
 fiemap_prep
 file_bdev
+file_check_and_advance_wb_err
 file_modified
 file_path
 file_ra_state_init
@@ -3744,6 +3781,8 @@ file_remove_privs
 file_update_time
 file_write_and_wait_range
 fileattr_fill_flags
+filemap_add_folio
+filemap_check_errors
 filemap_dirty_folio
 filemap_fault
 filemap_fdatawait_range
@@ -3756,6 +3795,7 @@ filemap_map_pages
 filemap_migrate_folio
 filemap_range_has_page
 filemap_read
+filemap_release_folio
 filemap_splice_read
 filemap_write_and_wait_range
 filp_close
@@ -3795,6 +3835,7 @@ flush_work
 folio_add_lru
 folio_clear_dirty_for_io
 folio_end_private_2
+folio_end_read
 folio_end_writeback
 folio_mapping
 folio_mark_dirty
@@ -3807,6 +3848,7 @@ folio_wait_private_2
 folio_wait_private_2_killable
 folio_wait_writeback
 folio_wait_writeback_killable
+folio_zero_new_buffers
 folios_put_refs
 follow_pfnmap_end
 follow_pfnmap_start
@@ -3920,11 +3962,14 @@ gen_pool_virt_to_phys
 generate_random_uuid
 generic_access_phys
 generic_block_bmap
+generic_cont_expand_simple
 generic_delete_inode
 generic_device_group
 generic_encode_ino32_fh
+generic_error_remove_folio
 generic_fh_to_dentry
 generic_fh_to_parent
+generic_file_direct_write
 generic_file_fsync
 generic_file_llseek
 generic_file_mmap
@@ -4354,6 +4399,7 @@ ieee802154_xmit_error
 ieee802154_xmit_hw_error
 iget5_locked
 iget_failed
+iget_locked
 ignore_console_lock_warning
 igrab
 ihold
@@ -4399,6 +4445,7 @@ iio_trigger_unregister
 iio_trigger_using_own
 iio_write_channel_raw
 ilookup
+ilookup5
 import_iovec
 import_ubuf
 in4_pton
@@ -4458,15 +4505,18 @@ init_user_ns
 init_uts_ns
 init_wait_entry
 init_wait_var_entry
+inode_add_bytes
 inode_dio_finished
 inode_dio_wait
 inode_dio_wait_interruptible
 inode_get_bytes
 inode_init_once
 inode_init_owner
+inode_maybe_inc_iversion
 inode_needs_sync
 inode_newsize_ok
 inode_nohighmem
+inode_query_iversion
 inode_set_bytes
 inode_set_ctime_current
 inode_set_flags
@@ -4575,6 +4625,7 @@ iov_iter_init
 iov_iter_kvec
 iov_iter_npages
 iov_iter_revert
+iov_iter_single_seg_count
 iov_iter_xarray
 iov_iter_zero
 iova_domain_init_rcaches
@@ -4989,8 +5040,11 @@ lzo1x_decompress_safe
 lzorle1x_1_compress
 mac_pton
 make_bad_inode
+make_vfsgid
+make_vfsuid
 mangle_path
 mark_buffer_dirty
+mark_buffer_write_io_error
 mark_mounts_for_expiry
 mark_page_accessed
 mas_empty_area_rev
@@ -4999,6 +5053,7 @@ mas_next
 mas_prev
 mas_walk
 match_int
+match_octal
 match_strdup
 match_string
 match_token
@@ -5094,6 +5149,8 @@ mempool_exit
 mempool_free
 mempool_free_slab
 mempool_init_noprof
+mempool_kfree
+mempool_kmalloc
 mempool_resize
 memremap
 memscan
@@ -5106,6 +5163,7 @@ metadata_dst_alloc
 metadata_dst_free
 mfd_add_devices
 mfd_remove_devices
+migrate_folio
 migrate_pages
 migrate_swap
 mii_ethtool_get_link_ksettings
@@ -5207,6 +5265,7 @@ mod_timer_pending
 module_layout
 module_put
 module_refcount
+mount_bdev
 mount_nodev
 mpage_read_folio
 mpage_readahead
@@ -5618,6 +5677,8 @@ out_of_line_wait_on_bit_timeout
 overflowgid
 overflowuid
 override_creds
+page_cache_next_miss
+page_cache_prev_miss
 page_ext_get
 page_ext_put
 page_frag_free
@@ -5634,7 +5695,9 @@ page_reporting_register
 page_reporting_unregister
 page_shift_compat
 page_shift_compat_enabled
+page_symlink
 pagecache_get_page
+pagecache_isize_extended
 panic
 panic_notifier_list
 panic_timeout
@@ -6313,6 +6376,7 @@ read_comp_algo_dictionary
 read_sanitised_ftr_reg
 read_swap_cache_async
 readahead_expand
+readahead_gfp_mask
 reboot_mode
 rebuild_sched_domains
 recalc_sigpending
@@ -6620,6 +6684,7 @@ rtnl_unregister_all
 runqueues
 safe_candev_priv
 sampling_rate_store
+sb_min_blocksize
 sb_set_blocksize
 sbitmap_add_wait_queue
 sbitmap_any_bit_set
@@ -6774,6 +6839,7 @@ sdio_writel
 sdio_writesb
 sdio_writew
 security_file_ioctl
+security_inode_init_security
 security_release_secctx
 security_sb_eat_lsm_opts
 security_secid_to_secctx
@@ -7451,6 +7517,7 @@ syscon_regmap_lookup_by_compatible
 syscon_regmap_lookup_by_phandle
 syscon_regmap_lookup_by_phandle_args
 syscon_regmap_lookup_by_phandle_optional
+sysctl_hung_task_timeout_secs
 sysctl_sched_features
 sysctl_sched_latency
 sysctl_vals
@@ -7492,6 +7559,7 @@ system_power_efficient_wq
 system_state
 system_unbound_wq
 system_wq
+tag_pages_for_writeback
 task_active_pid_ns
 task_cputime_adjusted
 task_lookup_next_fdget_rcu
@@ -7664,7 +7732,9 @@ truncate_pagecache_range
 truncate_setsize
 try_module_get
 try_to_del_timer_sync
+try_to_free_buffers
 try_to_free_mem_cgroup_pages
+try_to_writeback_inodes_sb
 try_wait_for_completion
 tso_build_data
 tso_build_hdr
@@ -8167,6 +8237,7 @@ user_read
 user_revoke
 usleep_range_state
 utf16s_to_utf8s
+utf32_to_utf8
 utf8_data_table
 utf8_to_utf32
 utf8s_to_utf16s
@@ -8569,6 +8640,7 @@ wait_for_completion_timeout
 wait_for_device_probe
 wait_on_page_writeback
 wait_woken
+wake_bit_function
 wake_up_bit
 wake_up_if_idle
 wake_up_process
@@ -8606,6 +8678,7 @@ wpan_phy_new
 wpan_phy_register
 wpan_phy_unregister
 wq_worker_comm
+wrap_directory_iterator
 write_cache_pages
 write_inode_now
 writeback_iter
@@ -8641,7 +8714,10 @@ xdp_rxq_info_unreg_mem_model
 xdp_warn
 xfrm_lookup
 xfrm_state_afinfo_get_rcu
+xfrm_state_alloc
+xfrm_state_delete
 xfrm_state_lookup_byspi
+xfrm_state_migrate
 xfrm_stateonly_find
 xhci_add_endpoint
 xhci_check_bandwidth
